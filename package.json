@@ -1,19 +1,26 @@
 {
   "name": "galaxy_sprint",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Juego de consola Galaxy Sprint — Carrera entre exploradores",
+  "main": "src/app.js",
+  "type": "module",
   "scripts": {
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DanielSantiagoV/Galaxy_Sprint.git"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "game",
+    "console",
+    "rpg",
+    "galaxy"
+  ],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/DanielSantiagoV/Galaxy_Sprint/issues"
   },
