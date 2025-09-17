@@ -1,41 +1,83 @@
-import fs from 'fs/promises';
-import path from 'path';
+/**
+ * GestorGuardado.js
+ * 
+ * Clase responsable de manejar la persistencia de datos del juego.
+ * Aplica el principio SRP (Single Responsibility Principle) al tener una única
+ * responsabilidad: guardar y cargar datos en archivos JSON.
+ * 
+ * @author Daniel Santiago
+ * @version 2.0.0
+ */
+
+// Importaciones de librerías de Node.js
+import fs from 'fs/promises';    // Para operaciones de archivos asíncronas
+import path from 'path';         // Para manejo de rutas de archivos
+
+// Importaciones de modelos de exploradores
 import { Explorador } from '../models/Explorador.js';
 import { ExploradorHumano } from '../models/ExploradorHumano.js';
 import { ExploradorIA } from '../models/ExploradorIA.js';
 import { ExploradorGuerrero } from '../models/ExploradorGuerrero.js';
 import { ExploradorMago } from '../models/ExploradorMago.js';
 import { ExploradorArquero } from '../models/ExploradorArquero.js';
+
+// Importaciones de modelos de items
 import { Pocion } from '../models/items/Pocion.js';
 import { Arma } from '../models/items/Arma.js';
 import { Armadura } from '../models/items/Armadura.js';
 import { Energia } from '../models/items/Energia.js';
 
-// Gestor de guardado y carga (SRP - Single Responsibility Principle)
+/**
+ * Clase GestorGuardado - Maneja la persistencia de datos del juego
+ * 
+ * Aplica principios SOLID:
+ * - SRP: Solo maneja guardado y carga de datos
+ * - OCP: Extensible para nuevos tipos de datos
+ * - DIP: Depende de abstracciones (interfaces de serialización)
+ */
 export class GestorGuardado {
+    /**
+     * Constructor de la clase GestorGuardado
+     * 
+     * Inicializa las rutas de los archivos de datos.
+     */
     constructor() {
-        this.directorioGuardado = './data';
-        this.archivoPersonajes = path.join(this.directorioGuardado, 'personajes.json');
-        this.archivoPartidas = path.join(this.directorioGuardado, 'partidas.json');
+        this.directorioGuardado = './data';  // Directorio donde se guardan los datos
+        this.archivoPersonajes = path.join(this.directorioGuardado, 'personajes.json'); // Archivo de personajes
+        this.archivoPartidas = path.join(this.directorioGuardado, 'partidas.json');     // Archivo de partidas
     }
 
+    /**
+     * Inicializa el sistema de guardado
+     * 
+     * Crea el directorio de datos y los archivos JSON necesarios
+     * si no existen. Aplica el principio SRP al manejar únicamente
+     * la inicialización del sistema de persistencia.
+     * 
+     * @throws {Error} Si hay problemas creando directorios o archivos
+     */
     async inicializar() {
         try {
+            // Crear directorio de datos si no existe (recursive: true crea subdirectorios)
             await fs.mkdir(this.directorioGuardado, { recursive: true });
             
-            // Crear archivos si no existen
+            // Crear archivo de personajes si no existe
             try {
-                await fs.access(this.archivoPersonajes);
+                await fs.access(this.archivoPersonajes); // Verificar si el archivo existe
             } catch {
+                // Si no existe, crear archivo vacío con array JSON
                 await fs.writeFile(this.archivoPersonajes, JSON.stringify([], null, 2));
             }
             
+            // Crear archivo de partidas si no existe
             try {
-                await fs.access(this.archivoPartidas);
+                await fs.access(this.archivoPartidas); // Verificar si el archivo existe
             } catch {
+                // Si no existe, crear archivo vacío con array JSON
                 await fs.writeFile(this.archivoPartidas, JSON.stringify([], null, 2));
             }
         } catch (error) {
+            // Lanzar error con mensaje descriptivo
             throw new Error(`Error inicializando sistema de guardado: ${error.message}`);
         }
     }
