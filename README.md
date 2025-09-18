@@ -381,6 +381,14 @@ graph TD
 
 ## 🎨 Diagrama UML Completo del Sistema
 
+### 📊 Diagrama Visual del Sistema
+
+![Diagrama UML Galaxy Sprint](docs/Galaxy-UML.png)
+
+*Diagrama UML completo que muestra la arquitectura del sistema Galaxy Sprint, incluyendo todas las clases, interfaces, atributos, métodos y relaciones entre componentes.*
+
+### 🔧 Diagrama Técnico en Mermaid
+
 ```mermaid
 classDiagram
     %% ==================== CLASE BASE ====================
