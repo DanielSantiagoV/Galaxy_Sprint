@@ -1180,6 +1180,6 @@ Galaxy Sprint representa un **caso de estudio completo** de desarrollo de softwa
 ---
 
 <p align="center">
-  Developed with ❤️ by Daniel Santiago<br>
+  Developed with ❤️ by Daniel Santiago - Santiago Romero - Ricardo Palomino <br>
   🔥 <b><a href="https://github.com/DanielSantiagoV">Visit my GitHub</a></b> 🚀
 </p>
