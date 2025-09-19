@@ -19,6 +19,8 @@
 
 
 ---
+## VIDEO SUSTENTACIÓN 
+#LINK: https://youtu.be/jjRUfbij87U
 
 ## 📚 Fundamentos del Taller
 
